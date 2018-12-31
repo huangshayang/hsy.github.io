@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | 個人のブログ</title>
+  <title>一次并发测试引起的数据库锁问题 | 個人のブログ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="個人のブログ">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="最近测试时，并发请求的时候造成数据库锁的问题，开发遇到后，挺严重的，找了好几遍都没找到原因，所以打算把这个记下来，以后测试的时候，这里就又会是一个测试点 并发请求测试代码123456789101112131415161718192021222324if (apiRepository.findById(id).isPresent()) &amp;#123;                Apis apis">
+<meta name="keywords" content="测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次并发测试引起的数据库锁问题">
+<meta property="og:url" content="http://yoursite.com/2018/07/31/一次并发测试引起的数据库锁问题/index.html">
 <meta property="og:site_name" content="個人のブログ">
+<meta property="og:description" content="最近测试时，并发请求的时候造成数据库锁的问题，开发遇到后，挺严重的，找了好几遍都没找到原因，所以打算把这个记下来，以后测试的时候，这里就又会是一个测试点 并发请求测试代码123456789101112131415161718192021222324if (apiRepository.findById(id).isPresent()) &amp;#123;                Apis apis">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-31T13:46:02.850Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="個人のブログ">
+<meta name="twitter:title" content="一次并发测试引起的数据库锁问题">
+<meta name="twitter:description" content="最近测试时，并发请求的时候造成数据库锁的问题，开发遇到后，挺严重的，找了好几遍都没找到原因，所以打算把这个记下来，以后测试的时候，这里就又会是一个测试点 并发请求测试代码123456789101112131415161718192021222324if (apiRepository.findById(id).isPresent()) &amp;#123;                Apis apis">
   
     <link rel="alternative" href="/atom.xml" title="個人のブログ" type="application/atom+xml">
   
@@ -156,302 +161,40 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-一次并发测试引起的数据库锁问题" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/06/HashMap复习/" class="archive-article-date">
-  	<time datetime="2018-12-06T09:11:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/06/HashMap复习/">HashMap复习</a>
+    <h1 class="article-title" itemprop="name">
+      一次并发测试引起的数据库锁问题
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/03/实体类应该用基本数据类型还是包装类型/" class="archive-article-date">
-  	<time datetime="2018-12-03T06:54:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/03/实体类应该用基本数据类型还是包装类型/">实体类应该用基本数据类型还是包装类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/28/JVM虚拟机学习-一/" class="archive-article-date">
-  	<time datetime="2018-10-28T15:42:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/28/JVM虚拟机学习-一/">JVM虚拟机学习(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/16/数据爬取学习/" class="archive-article-date">
-  	<time datetime="2018-10-16T10:11:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/16/数据爬取学习/">数据爬取学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/16/arraylist扩容机制/" class="archive-article-date">
-  	<time datetime="2018-10-16T10:10:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/16/arraylist扩容机制/">arraylist扩容机制</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/13/Jenkins相关操作/" class="archive-article-date">
-  	<time datetime="2018-09-13T06:42:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/13/Jenkins相关操作/">Jenkins相关操作</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jenkins</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/06/udp协议/" class="archive-article-date">
-  	<time datetime="2018-09-06T07:22:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/06/udp协议/">udp协议</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/31/一次并发测试引起的数据库锁问题/" class="archive-article-date">
+        
+        <a href="/2018/07/31/一次并发测试引起的数据库锁问题/" class="archive-article-date">
   	<time datetime="2018-07-31T02:53:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/31/一次并发测试引起的数据库锁问题/">一次并发测试引起的数据库锁问题</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近测试时，并发请求的时候造成数据库锁的问题，开发遇到后，挺严重的，找了好几遍都没找到原因，所以打算把这个记下来，以后测试的时候，这里就又会是一个测试点</p>
+<p>并发请求测试代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">if (apiRepository.findById(id).isPresent()) &#123;</span><br><span class="line">                Apis apis = apiRepository.findById(id).get();</span><br><span class="line">                //根据case的数量起对应数量的多线程</span><br><span class="line">                casesList.forEach(cases -&gt; new Thread(() -&gt; &#123;</span><br><span class="line">                    logger.info(Thread.currentThread().getName() + &quot; is running &quot; + apis.getUrl() + &quot;, &quot; + cases.getRequest_data());</span><br><span class="line">                    try &#123;</span><br><span class="line">                        //向外部发送http请求</span><br><span class="line">                        ResponseEntity&lt;String&gt; response = restHttp(apis, cases);</span><br><span class="line">                        //把请求的结果保存到日志里</span><br><span class="line">                        Logs logs = new Logs();</span><br><span class="line">                        logs.setRequest_data(cases.getRequest_data());</span><br><span class="line">                        logs.setRequest_time(new Timestamp(System.currentTimeMillis()));</span><br><span class="line">                        logs.setCode(response.getStatusCodeValue());</span><br><span class="line">                        logs.setResponse_header(String.valueOf(response.getHeaders()));</span><br><span class="line">                        logs.setResponse_data(response.getBody());</span><br><span class="line">                        logs.setApiId(apis.getId());</span><br><span class="line">                        logs.setNote(cases.getNote());</span><br><span class="line">                        logRepository.save(logs);</span><br><span class="line">                    &#125; catch (IOException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    logger.info(Thread.currentThread().getName() + &quot; is finished &quot; + apis.getUrl() + &quot;, &quot; + cases.getRequest_data());</span><br><span class="line">                &#125;).start());</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure></p>
+<p>spring boot的客户端Http请求代码<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">private ResponseEntity&lt;String&gt; restHttp(Apis api, Cases cases) throws IOException &#123;</span><br><span class="line">        String method = api.getMethod();</span><br><span class="line">        String url = URL + api.getUrl();</span><br><span class="line">        String data = cases.getRequest_data();</span><br><span class="line">        Boolean is_cookie = api.getIs_cookie();</span><br><span class="line">        ResponseEntity&lt;String&gt; body = null;</span><br><span class="line">        switch (method)&#123;</span><br><span class="line">            case &quot;get&quot;:</span><br><span class="line">                body = RestRequest.doGet(url, data, is_cookie);</span><br><span class="line">                break;</span><br><span class="line">            case &quot;post&quot;:</span><br><span class="line">                body = RestRequest.doPost(url, data, is_cookie);</span><br><span class="line">                break;</span><br><span class="line">            case &quot;put&quot;:</span><br><span class="line">                body = RestRequest.doPut(url, data);</span><br><span class="line">                break;</span><br><span class="line">            case &quot;delete&quot;:</span><br><span class="line">                body = RestRequest.doDelete(url, data);</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        return body;</span><br><span class="line">    &#125;</span><br><span class="line">//这里修改过，之前是每个需要cookie的请求都会去请求一次login接口，然后把cookie传过去，现在修改了下，只传一次cookie</span><br><span class="line">public class RestRequest &#123;</span><br><span class="line"></span><br><span class="line">    //private static final List&lt;String&gt; cookie = getCookie();</span><br><span class="line"></span><br><span class="line">    public static ResponseEntity&lt;String&gt; doPost(String url, String data, boolean is_cookie)&#123;</span><br><span class="line">        RestTemplate restTemplate = new RestTemplate();</span><br><span class="line">        HttpHeaders headers = new HttpHeaders();</span><br><span class="line">        if (is_cookie) &#123;</span><br><span class="line">            headers.put(HttpHeaders.COOKIE, cookie);</span><br><span class="line">        &#125;</span><br><span class="line">        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);</span><br><span class="line">        HttpEntity&lt;String&gt; httpEntity = new HttpEntity&lt;&gt;(data, headers);</span><br><span class="line">        return restTemplate.exchange(url, HttpMethod.POST, httpEntity, String.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static ResponseEntity&lt;String&gt; doPut(String url, String data)&#123;</span><br><span class="line">        RestTemplate restTemplate = new RestTemplate();</span><br><span class="line">        HttpHeaders headers = new HttpHeaders();</span><br><span class="line">        headers.put(HttpHeaders.COOKIE, cookie);</span><br><span class="line">        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);</span><br><span class="line">        HttpEntity&lt;String&gt; httpEntity = new HttpEntity&lt;&gt;(data, headers);</span><br><span class="line">        return restTemplate.exchange(url, HttpMethod.PUT, httpEntity, String.class);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //doDelete</span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    //doPost</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    private static List&lt;String&gt; getCookie()&#123;</span><br><span class="line">        String url = &quot;http://192.168.3.111:8000/api/v1/login&quot;;</span><br><span class="line">        Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">        map.put(&quot;username&quot;, &quot;123456789&quot;);</span><br><span class="line">        map.put(&quot;password&quot;,&quot;d7190eb194ff9494625514b6d178c87f99c5973e28c398969d223;</span><br><span class="line">        RestTemplate restTemplate = new RestTemplate();</span><br><span class="line">        HttpEntity&lt;Map&lt;String, Object&gt;&gt; httpEntity = new HttpEntity&lt;&gt;(map);</span><br><span class="line">        return restTemplate.exchange(url, HttpMethod.POST, httpEntity, String.class).getHeaders().get(&quot;Set-Cookie&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试的过程是这样的，一个profile的接口，里面有N条用例，一些用例是正确的参数，一些是错误的参数，然后当我执行测试的时候，会起多线程，并发请求这个接口，然后就会出现这个错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">peewee.InternalError: (1205, &apos;Lock wait timeout exceeded; try restarting transaction&apos;) (140251547223808)</span><br></pre></td></tr></table></figure></p>
+<p>但是很奇怪的是，如果我的用例里全是正确的参数就不会出现，只要有1个错误的参数用例就会这样。最后开发说的结果</p>
+<p><strong>mysql 默认 autocommit mode，单条语句是包在事务中执行的，peewee 的 execute 就属这种，且在不设置 autorollback 时发生异常后不会 rollback 。又由于我们用了连接池，当 execute 异常没回滚，连接又没断，事务持有的锁会一直存在。日志描述案例中，成功登录会触发自动加入 brand 逻辑，目前这里几乎总会抛 integrity error，于是 user 表上的 s 锁得不到释放，就造成后续 update 操作被锁。之所以无参数错误时不会被锁，是因为这种情况下，之前的每个连接会有数据读操作，将原来的 s 锁冲掉，后续的 update 就能正常操作，然而有参数错误时，处理过程不会有数据库操作，之前的连接中的锁仍然持有，其他连接的 update 就无法继续。倘若上例中 POST /login 请求数多于 PUT /profile 数，又或是 PUT /profile 直接 update 而不读 user 表，那么即使参数都正确，也会被锁。</strong></p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -463,98 +206,63 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/13/tcp建立连接和断开连接/" class="archive-article-date">
-  	<time datetime="2018-07-13T06:34:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-13</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2018/09/06/udp协议/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          udp协议
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/13/tcp建立连接和断开连接/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">tcp建立连接和断开连接</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/13/tcp建立连接和断开连接/">tcp建立连接和断开连接</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/08/angular学习/" class="archive-article-date">
-  	<time datetime="2018-07-08T09:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/08/angular学习/">angular学习</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -578,8 +286,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

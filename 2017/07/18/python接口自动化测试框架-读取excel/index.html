@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | 個人のブログ</title>
+  <title>python接口自动化测试框架-读取excel | 個人のブログ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="個人のブログ">
-<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
+  <meta name="description" content="读取excel部分,使用xlrd模块,遍历每行每列1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python接口自动化测试框架-读取excel">
+<meta property="og:url" content="http://yoursite.com/2017/07/18/python接口自动化测试框架-读取excel/index.html">
 <meta property="og:site_name" content="個人のブログ">
+<meta property="og:description" content="读取excel部分,使用xlrd模块,遍历每行每列1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-31T13:45:56.296Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="個人のブログ">
+<meta name="twitter:title" content="python接口自动化测试框架-读取excel">
+<meta name="twitter:description" content="读取excel部分,使用xlrd模块,遍历每行每列1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192">
   
     <link rel="alternative" href="/atom.xml" title="個人のブログ" type="application/atom+xml">
   
@@ -156,150 +161,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-python接口自动化测试框架-读取excel" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python接口自动化测试框架-读取excel
+    </h1>
+  
+
+        
+        <a href="/2017/07/18/python接口自动化测试框架-读取excel/" class="archive-article-date">
+  	<time datetime="2017-07-17T17:02:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-18</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>读取excel部分,使用xlrd模块,遍历每行每列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"># coding= utf-8</span><br><span class="line"></span><br><span class="line">import xlrd</span><br><span class="line"></span><br><span class="line">class ReadExcel:</span><br><span class="line">    def __init__(self, path):</span><br><span class="line">        self.path = path</span><br><span class="line"></span><br><span class="line">    @property  # 把方法变成属性可以直接进行调用,只有@property表示只读</span><br><span class="line">    def get_sheet(self):</span><br><span class="line">        # 获取索引</span><br><span class="line">        xl = xlrd.open_workbook(self.path)</span><br><span class="line">        sheet = xl.sheets()</span><br><span class="line">        return sheet</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def get_rows(self):</span><br><span class="line">        # 获取行数</span><br><span class="line">        row = self.sheet.nrows</span><br><span class="line">        return row</span><br><span class="line"></span><br><span class="line">    @get_rows.setter         # 有@property and @x.setter表示可读可写;同时有@property和@x.setter和@x.deleter表示可读可写可删除。</span><br><span class="line">    def get_rows(self, sheet):</span><br><span class="line">        self.sheet = sheet</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def get_col(self):</span><br><span class="line">        # 获取列数</span><br><span class="line">        col = self.sheet.ncols</span><br><span class="line">        return col</span><br><span class="line"></span><br><span class="line">    @get_col.setter</span><br><span class="line">    def get_col(self, sheet):</span><br><span class="line">        self.sheet = sheet</span><br><span class="line"></span><br><span class="line">    # 以下是分别获取每一列的数值</span><br><span class="line">    @property</span><br><span class="line">    def get_name(self):</span><br><span class="line">        text_name = []</span><br><span class="line">        for i in range(1, self.get_rows):</span><br><span class="line">            text_name.append(self.sheet.cell_value(i, 0))  # append() 方法向列表的尾部添加一个新的元素。只接受一个参数。</span><br><span class="line">        return text_name</span><br><span class="line"></span><br><span class="line">    @get_name.setter</span><br><span class="line">    def get_name(self, sheet):</span><br><span class="line">        self.sheet = sheet</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def get_url(self):</span><br><span class="line">        text_url = []</span><br><span class="line">        for i in range(1, self.get_rows):</span><br><span class="line">            text_url.append(self.sheet.cell_value(i, 1))</span><br><span class="line">        return text_url</span><br><span class="line"></span><br><span class="line">    @get_url.setter</span><br><span class="line">    def get_url(self, sheet):</span><br><span class="line">        self.sheet = sheet</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def get_data(self):</span><br><span class="line">        text_data = []</span><br><span class="line">        for i in range(1, self.get_rows):</span><br><span class="line">            text_data.append(self.sheet.cell_value(i, 2))</span><br><span class="line">        return text_data</span><br><span class="line"></span><br><span class="line">    @get_data.setter</span><br><span class="line">    def get_data(self, sheet):</span><br><span class="line">        self.sheet = sheet</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def get_file(self):</span><br><span class="line">        text_file = []</span><br><span class="line">        for i in range(1, self.get_rows):</span><br><span class="line">            text_file.append(self.sheet.cell_value(i, 3))</span><br><span class="line">        return text_file</span><br><span class="line"></span><br><span class="line">    @get_file.setter</span><br><span class="line">    def get_file(self, sheet):</span><br><span class="line">        self.sheet = sheet</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def get_method(self):</span><br><span class="line">        text_method = []</span><br><span class="line">        for i in range(1, self.get_rows):</span><br><span class="line">            text_method.append(self.sheet.cell_value(i, 4))</span><br><span class="line">        return text_method</span><br><span class="line"></span><br><span class="line">    @get_method.setter</span><br><span class="line">    def get_method(self, sheet):</span><br><span class="line">        self.sheet = sheet</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def get_code(self):</span><br><span class="line">        text_code = []</span><br><span class="line">        for i in range(1, self.get_rows):</span><br><span class="line">            text_code.append(self.sheet.cell_value(i, 5))</span><br><span class="line">        return text_code</span><br><span class="line"></span><br><span class="line">    @get_code.setter</span><br><span class="line">    def get_code(self, sheet):</span><br><span class="line">        self.sheet = sheet</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def get_message(self):</span><br><span class="line">        text_message = []</span><br><span class="line">        for i in range(1, self.get_rows):</span><br><span class="line">            text_message.append(self.sheet.cell_value(i, 6))</span><br><span class="line">        return text_message</span><br><span class="line"></span><br><span class="line">    @get_message.setter</span><br><span class="line">    def get_message(self, sheet):</span><br><span class="line">        self.sheet = sheet</span><br><span class="line"></span><br><span class="line">    @property</span><br><span class="line">    def get_token(self):</span><br><span class="line">        text_token = []</span><br><span class="line">        for i in range(1, self.get_rows):</span><br><span class="line">            text_token.append(self.sheet.cell_value(i, 7))</span><br><span class="line">        return text_token</span><br><span class="line"></span><br><span class="line">    @get_token.setter</span><br><span class="line">    def get_token(self, sheet):</span><br><span class="line">        self.sheet = sheet</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/06/HashMap复习/" class="archive-article-date">
-  	<time datetime="2018-12-06T09:11:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/06/HashMap复习/">HashMap复习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/03/实体类应该用基本数据类型还是包装类型/" class="archive-article-date">
-  	<time datetime="2018-12-03T06:54:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/03/实体类应该用基本数据类型还是包装类型/">实体类应该用基本数据类型还是包装类型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/28/JVM虚拟机学习-一/" class="archive-article-date">
-  	<time datetime="2018-10-28T15:42:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/28/JVM虚拟机学习-一/">JVM虚拟机学习(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/16/数据爬取学习/" class="archive-article-date">
-  	<time datetime="2018-10-16T10:11:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/16/数据爬取学习/">数据爬取学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -311,250 +201,58 @@
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/16/arraylist扩容机制/" class="archive-article-date">
-  	<time datetime="2018-10-16T10:10:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/07/19/python接口自动化测试框架-method封装/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          python接口测试框架-method封装
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/16/arraylist扩容机制/">arraylist扩容机制</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/13/Jenkins相关操作/" class="archive-article-date">
-  	<time datetime="2018-09-13T06:42:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/13/Jenkins相关操作/">Jenkins相关操作</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jenkins</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/06/udp协议/" class="archive-article-date">
-  	<time datetime="2018-09-06T07:22:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/06/udp协议/">udp协议</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/31/一次并发测试引起的数据库锁问题/" class="archive-article-date">
-  	<time datetime="2018-07-31T02:53:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/31/一次并发测试引起的数据库锁问题/">一次并发测试引起的数据库锁问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/13/tcp建立连接和断开连接/" class="archive-article-date">
-  	<time datetime="2018-07-13T06:34:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/13/tcp建立连接和断开连接/">tcp建立连接和断开连接</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/08/angular学习/" class="archive-article-date">
-  	<time datetime="2018-07-08T09:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/08/angular学习/">angular学习</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -578,8 +276,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
