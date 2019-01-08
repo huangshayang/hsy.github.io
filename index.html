@@ -148,6 +148,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-定时任务学习笔记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/08/定时任务学习笔记/">定时任务学习笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/08/定时任务学习笔记/" class="archive-article-date">
+  	<time datetime="2019-01-08T12:44:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在为接口测试平台加入一个定时任务的功能，网上找了几个实现的方式，最后选定了quartz</p>
+<p>1.先说第一个，springboot里自带的，是通过@Schedule注解的形式，直接加在方法上，虽然可以设置cron，但是没法把cron作为参数传递，内部具体的实现机制也不是很清楚</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Scheduled(fixedRate = 5000)</span><br><span class="line">public void reportCurrentTime() &#123;</span><br><span class="line">    log.info(&quot;The time is now &#123;&#125;&quot;, dateFormat.format(new Date()));</span><br><span class="line">&#125;</span><br><span class="line">@SpringBootApplication</span><br><span class="line">@EnableScheduling</span><br><span class="line">public class Application &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(Application.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>2.ThreadPoolTaskScheduler</p>
+<p>这个是org.springframework.scheduling.concurrent包里一个类，实现了TaskScheduler接口和Excetuor接口，是一个通过线程池来做任务处理的类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">构造函数：</span><br><span class="line">public ThreadPoolTaskScheduler() &#123;</span><br><span class="line">    this.listenableFutureMap = new ConcurrentReferenceHashMap(16, ReferenceType.WEAK);</span><br><span class="line">&#125;</span><br><span class="line">是一个ConcurrentReferenceHashMap对象</span><br></pre></td></tr></table></figure>
+<p>其默认的线程池的数量是1，所以如果要多任务并行执行，则需要设置它的poolsize</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private volatile int poolSize = 1;</span><br><span class="line">...</span><br><span class="line">public void setPoolSize(int poolSize) &#123;</span><br><span class="line">    Assert.isTrue(poolSize &gt; 0, &quot;&apos;poolSize&apos; must be 1 or higher&quot;);</span><br><span class="line">    this.poolSize = poolSize;</span><br><span class="line">    if (this.scheduledExecutor instanceof ScheduledThreadPoolExecutor) &#123;</span><br><span class="line">        ((ScheduledThreadPoolExecutor)this.scheduledExecutor).setCorePoolSize(poolSize);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private ThreadPoolTaskScheduler threadPoolTaskScheduler;</span><br><span class="line"></span><br><span class="line">//设置线程池</span><br><span class="line">@Bean</span><br><span class="line">public ThreadPoolTaskScheduler threadPoolTaskScheduler() &#123;</span><br><span class="line">    threadPoolTaskScheduler = new ThreadPoolTaskScheduler();</span><br><span class="line">    threadPoolTaskScheduler.setPoolSize(10);</span><br><span class="line">    return threadPoolTaskScheduler;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//自定义cron和一个实现了Runnerable接口的类作为参数传递，返回一个ScheduleFuture对象</span><br><span class="line">ScheduledFuture future = threadPoolTaskScheduler.schedule(new MyFuture(), new CronTrigger());</span><br><span class="line"></span><br><span class="line">//任务的停止，可以在全局创建一个map对象，用来存储future，当要停止某个future时，直接调用cancel方法就行</span><br><span class="line">future.cancel(true);</span><br></pre></td></tr></table></figure>
+<p>所以从源码可以得知，其实底层就是future类的相关操作，具体的就跟多线程这些有关了</p>
+<p>这个方法做定时任务有个缺点,就是每个任务自己的执行时间间隔超过了cron的时间，那么就会一直阻塞等待，直到完成才执行下一次，这样就很不好了，网上找了很多发现没法解决这个问题</p>
+        
+          <a class="article-more-a" href="/2019/01/08/定时任务学习笔记/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-HashMap复习" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -852,84 +936,6 @@
 
 
   
-    <article id="post-angular学习" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/08/angular学习/">angular学习</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/08/angular学习/" class="archive-article-date">
-  	<time datetime="2018-07-08T09:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>angular的项目是由各组件来组成的，通过路由来控制组件的跳转</p>
-<p>安装angular所需的插件，如bootstrap<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i bootstrap -s</span><br></pre></td></tr></table></figure></p>
-<p>然后在angular.json里添加bootstrap的node_module路径</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;styles&quot;: [</span><br><span class="line">             ...,</span><br><span class="line">             &quot;./node_modules/bootstrap/dist/css/bootstrap.css&quot;</span><br><span class="line">           ],</span><br></pre></td></tr></table></figure>
-<p>创建angular的路由项目</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng new app-name --routing</span><br></pre></td></tr></table></figure>
-<p>在app-routing.module.ts里配置页面的路径，其中错误页面用通配符，且需放在最后面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const routes: Routes = [</span><br><span class="line">  //这里表示当输入为空路径时，直接跳转到login页面</span><br><span class="line">  &#123;path: &apos;&apos;, redirectTo: &apos;login&apos;, pathMatch: &apos;full&apos;&#125;,</span><br><span class="line">  &#123;path: &apos;login&apos;, component: LoginComponent&#125;,</span><br><span class="line">  &#123;path: &apos;api-view&apos;, component: ApiListComponent&#125;,</span><br><span class="line">  &#123;path: &apos;api-view/:id/case-view&apos;, component: CaseListComponent&#125;,</span><br><span class="line">  &#123;path: &apos;api-view/:id/log-view&apos;, component: LogListComponent&#125;,</span><br><span class="line">  &#123;path: &apos;case-view/:id&apos;, component: CaseComponent&#125;,</span><br><span class="line">  &#123;path: &apos;api-view/:id&apos;, component: ApiComponent&#125;,</span><br><span class="line">  &#123;path: &apos;api-view/add&apos;, component: ApiComponent&#125;,</span><br><span class="line">  //错误404页面的处理需要放在最后面</span><br><span class="line">  &#123;path: &apos;**&apos;, redirectTo: &apos;404&apos;&#125;,</span><br><span class="line">  &#123;path: &apos;404&apos;, component: Code404Component&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-<p>页面按钮跳转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[routerLink]=&quot;[&apos;/case-view&apos;]&quot;</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1032,11 +1038,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -148,6 +148,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-angular学习" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/08/angular学习/">angular学习</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/08/angular学习/" class="archive-article-date">
+  	<time datetime="2018-07-08T09:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>angular的项目是由各组件来组成的，通过路由来控制组件的跳转</p>
+<p>安装angular所需的插件，如bootstrap<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i bootstrap -s</span><br></pre></td></tr></table></figure></p>
+<p>然后在angular.json里添加bootstrap的node_module路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;styles&quot;: [</span><br><span class="line">             ...,</span><br><span class="line">             &quot;./node_modules/bootstrap/dist/css/bootstrap.css&quot;</span><br><span class="line">           ],</span><br></pre></td></tr></table></figure>
+<p>创建angular的路由项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng new app-name --routing</span><br></pre></td></tr></table></figure>
+<p>在app-routing.module.ts里配置页面的路径，其中错误页面用通配符，且需放在最后面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const routes: Routes = [</span><br><span class="line">  //这里表示当输入为空路径时，直接跳转到login页面</span><br><span class="line">  &#123;path: &apos;&apos;, redirectTo: &apos;login&apos;, pathMatch: &apos;full&apos;&#125;,</span><br><span class="line">  &#123;path: &apos;login&apos;, component: LoginComponent&#125;,</span><br><span class="line">  &#123;path: &apos;api-view&apos;, component: ApiListComponent&#125;,</span><br><span class="line">  &#123;path: &apos;api-view/:id/case-view&apos;, component: CaseListComponent&#125;,</span><br><span class="line">  &#123;path: &apos;api-view/:id/log-view&apos;, component: LogListComponent&#125;,</span><br><span class="line">  &#123;path: &apos;case-view/:id&apos;, component: CaseComponent&#125;,</span><br><span class="line">  &#123;path: &apos;api-view/:id&apos;, component: ApiComponent&#125;,</span><br><span class="line">  &#123;path: &apos;api-view/add&apos;, component: ApiComponent&#125;,</span><br><span class="line">  //错误404页面的处理需要放在最后面</span><br><span class="line">  &#123;path: &apos;**&apos;, redirectTo: &apos;404&apos;&#125;,</span><br><span class="line">  &#123;path: &apos;404&apos;, component: Code404Component&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>页面按钮跳转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[routerLink]=&quot;[&apos;/case-view&apos;]&quot;</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-spring-data-jpa一对多关系" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -837,76 +915,6 @@
 
 
   
-    <article id="post-centost7添加BBR加速支持" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/centost7添加BBR加速支持/">centost7添加BBR加速支持</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/02/centost7添加BBR加速支持/" class="archive-article-date">
-  	<time datetime="2018-01-02T14:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span><br><span class="line">2. rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm</span><br><span class="line">3. yum --enablerepo=elrepo-kernel install kernel-ml -y</span><br><span class="line">4. cat /boot/grub2/grub.cfg |grep menuentry</span><br><span class="line">5. grub2-set-default &apos;新内核&apos;</span><br><span class="line">6. reboot</span><br><span class="line">7. echo &apos;net.core.default_qdisc=fq&apos; | sudo tee -a /etc/sysctl.conf</span><br><span class="line">8. echo &apos;net.ipv4.tcp_congestion_control=bbr&apos; | sudo tee -a /etc/sysctl.conf</span><br><span class="line">9. sysctl -p</span><br><span class="line">10. sysctl net.ipv4.tcp_available_congestion_control</span><br><span class="line">11. sysctl -n net.ipv4.tcp_congestion_control</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">bbr</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1009,11 +1017,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
