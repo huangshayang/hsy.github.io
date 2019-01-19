@@ -882,10 +882,10 @@
 <hr>
 <p>TCP断开连接：</p>
 <ul>
-<li>第一次： client向server发送断开连接请求</li>
-<li>第二次： server回复client的断开连接请求</li>
-<li>第三次： client等待server发送完信息，server向client发送数据发送完成信息</li>
-<li>第四次： client接收到server的信息，断开连接</li>
+<li>第一次： client发送一个FIN，用来关闭client到server的数据传送，client进入FIN_WAIT_1状态</li>
+<li>第二次： server收到FIN后，发送一个ACK给client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），server进入CLOSE_WAIT状态</li>
+<li>第三次： server发送一个FIN，用来关闭server到client的数据传送，server进入LAST_ACK状态</li>
+<li>第四次： client收到FIN后，client进入TIME_WAIT状态，接着发送一个ACK给server，确认序号为收到序号+1，server进入CLOSED状态，完成</li>
 </ul>
 
       
@@ -1058,15 +1058,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
