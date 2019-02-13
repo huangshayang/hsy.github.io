@@ -148,6 +148,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-tcp建立连接和断开连接" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/13/tcp建立连接和断开连接/">tcp建立连接和断开连接</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/13/tcp建立连接和断开连接/" class="archive-article-date">
+  	<time datetime="2018-07-13T06:34:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>TCP三次握手：</p>
+<ul>
+<li>第一次握手：client向server发送连接请求</li>
+<li>第二次握手：server收到client发送过来的请求，并回复client</li>
+<li>第三次握手：client接收到server的信息，建立连接</li>
+</ul>
+<hr>
+<p>TCP断开连接：</p>
+<ul>
+<li>第一次： client发送一个FIN，用来关闭client到server的数据传送，client进入FIN_WAIT_1状态</li>
+<li>第二次： server收到FIN后，发送一个ACK给client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），server进入CLOSE_WAIT状态</li>
+<li>第三次： server发送一个FIN，用来关闭server到client的数据传送，server进入LAST_ACK状态</li>
+<li>第四次： client收到FIN后，client进入TIME_WAIT状态，接着发送一个ACK给server，确认序号为收到序号+1，server进入CLOSED状态，完成</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-angular学习" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -839,82 +922,6 @@
 
 
   
-    <article id="post-[转]Nginx绑定多个域名" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/08/[转]Nginx绑定多个域名/">[转]Nginx绑定多个域名</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/08/[转]Nginx绑定多个域名/" class="archive-article-date">
-  	<time datetime="2018-06-08T02:56:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Nginx绑定多个域名，可通过把多个域名规则写一个配置文件里实现，也可通过分别建立多个域名配置文件实现，一般为了管理方便，建议每个域名建一个文件，有些同类域名也可写在一个总的配置文件里。</p>
-<hr>
-<ul>
-<li>一 每个域名一个文件的写法<br>首先打开 nginx 域名配置文件存放目录：/usr/local/nginx/conf/servers ，如要绑定域名 <a href="http://www.server110.com" target="_blank" rel="noopener">www.server110.com</a> 则在此目录建一个文件：<a href="http://www.server110.com.conf" target="_blank" rel="noopener">www.server110.com.conf</a> 然后在此文件中写规则</li>
-</ul>
-        
-          <a class="article-more-a" href="/2018/06/08/[转]Nginx绑定多个域名/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1005,6 +1012,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
               </li>
              
@@ -1013,11 +1024,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1025,15 +1036,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">bbr</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">bbr</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1050,6 +1057,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">测试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
             
             <div class="clearfix"></div>
