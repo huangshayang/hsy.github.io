@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>HashMap复习 | 煜</title>
+  <title>异常丢失 | 煜</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="HashMap是数组+链表+红黑树实现的 HashMap初始化长度DEFAULT_INITIAL_CAPACITY= 1 &amp;lt;&amp;lt; 4(即16)，负载因子DEFAULT_LOAD_FACTOR =0.75f threshold是HashMap所能容纳的最大数据量的Node(键值对)个数。threshold = length * Load factor也就是说，在数组定义好长度之后，负载因子">
+  <meta name="description" content="`public class Main {    public static void main(String[] args) throws IOException {        try {            throw new IOException();        }finally {            System.out.println(“test”);        }">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HashMap复习">
-<meta property="og:url" content="http://yoursite.com/2018/12/06/HashMap复习/index.html">
+<meta property="og:title" content="异常丢失">
+<meta property="og:url" content="http://yoursite.com/2019/03/03/异常丢失/index.html">
 <meta property="og:site_name" content="煜">
-<meta property="og:description" content="HashMap是数组+链表+红黑树实现的 HashMap初始化长度DEFAULT_INITIAL_CAPACITY= 1 &amp;lt;&amp;lt; 4(即16)，负载因子DEFAULT_LOAD_FACTOR =0.75f threshold是HashMap所能容纳的最大数据量的Node(键值对)个数。threshold = length * Load factor也就是说，在数组定义好长度之后，负载因子">
+<meta property="og:description" content="`public class Main {    public static void main(String[] args) throws IOException {        try {            throw new IOException();        }finally {            System.out.println(“test”);        }">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-31T13:45:54.453Z">
+<meta property="og:updated_time" content="2019-03-03T10:24:07.376Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HashMap复习">
-<meta name="twitter:description" content="HashMap是数组+链表+红黑树实现的 HashMap初始化长度DEFAULT_INITIAL_CAPACITY= 1 &amp;lt;&amp;lt; 4(即16)，负载因子DEFAULT_LOAD_FACTOR =0.75f threshold是HashMap所能容纳的最大数据量的Node(键值对)个数。threshold = length * Load factor也就是说，在数组定义好长度之后，负载因子">
+<meta name="twitter:title" content="异常丢失">
+<meta name="twitter:description" content="`public class Main {    public static void main(String[] args) throws IOException {        try {            throw new IOException();        }finally {            System.out.println(“test”);        }">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -151,47 +151,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-HashMap复习" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-异常丢失" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      HashMap复习
+      异常丢失
     </h1>
   
 
         
-        <a href="/2018/12/06/HashMap复习/" class="archive-article-date">
-  	<time datetime="2018-12-06T09:11:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-06</time>
+        <a href="/2019/03/03/异常丢失/" class="archive-article-date">
+  	<time datetime="2019-03-03T09:23:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>HashMap是数组+链表+红黑树实现的</p>
-<p>HashMap初始化长度DEFAULT_INITIAL_CAPACITY= 1 &lt;&lt; 4(即16)，负载因子DEFAULT_LOAD_FACTOR =0.75f</p>
-<p>threshold是HashMap所能容纳的最大数据量的Node(键值对)个数。threshold = length * Load factor也就是说，在数组定义好长度之后，负载因子越大，所能容纳的键值对个数越多。</p>
-<p>结合负载因子的定义公式可知，threshold就是在此loadFactor和length(数组长度)对应下允许的最大元素数目，超过这个数目就重新resize(扩容)，扩容后的HashMap容量是之前容量的<strong>两倍</strong>。默认的负载因子0.75是对空间和时间效率的一个平衡选择<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public V put(K key, V value) &#123;</span><br><span class="line">        return putVal(hash(key), key, value, false, true);</span><br><span class="line">    &#125;</span><br><span class="line">final V putVal(int hash, K key, V value, boolean onlyIfAbsent,</span><br><span class="line">                   boolean evict) &#123;</span><br><span class="line">        ...</span><br><span class="line">        ++modCount;</span><br><span class="line">        if (++size &gt; threshold)</span><br><span class="line">            resize();</span><br><span class="line">        afterNodeInsertion(evict);</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>size这个字段就是HashMap中实际存在的键值对数量。而modCount字段主要用来记录HashMap内部结构发生变化的次数，主要用于迭代的快速失败<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if (oldCap &gt; 0) &#123;</span><br><span class="line">            if (oldCap &gt;= MAXIMUM_CAPACITY) &#123;</span><br><span class="line">                threshold = Integer.MAX_VALUE;</span><br><span class="line">                return oldTab;</span><br><span class="line">            &#125;</span><br><span class="line">            else if ((newCap = oldCap &lt;&lt; 1) &lt; MAXIMUM_CAPACITY &amp;&amp;</span><br><span class="line">                     oldCap &gt;= DEFAULT_INITIAL_CAPACITY)</span><br><span class="line">                newThr = oldThr &lt;&lt; 1; // double threshold</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>HashMap是数组加链表的结合。在每个数组元素上都一个链表结构，当数据被Hash后，得到数组下标，把数据放在对应下标元素的链表上。<br>map.put(“key”,”value”);</p>
-<p>系统将调用key的hashCode()方法得到其hashCode 值，然后再通过Hash算法的后两步运算来定位该键值对的存储位置</p>
-<p>HashMap的put方法：<br>1.先判断hashmap的初始长度length是否为空或者0，如果是就调用resize扩容，长度为默认的16，threshold=16*0.75=12<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if ((tab = table) == null || (n = tab.length) == 0)</span><br><span class="line">            n = (tab = resize()).length;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resize()&#123;</span><br><span class="line">    // zero initial threshold signifies using defaults</span><br><span class="line">    newCap = DEFAULT_INITIAL_CAPACITY;</span><br><span class="line">    newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.如果不是，根据键值key计算hash值得到插入的索引值（包括resize扩容后的操作）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public V put(K key, V value) &#123;</span><br><span class="line">        return putVal(hash(key), key, value, false, true);</span><br><span class="line">    &#125;</span><br><span class="line">hash(key)</span><br><span class="line">Node&lt;K,V&gt; e; K k;</span><br><span class="line">if (p.hash == hash &amp;&amp;</span><br><span class="line">    ((k = p.key) == key || (key != null &amp;&amp; key.equals(k))))</span><br><span class="line">    e = p;</span><br><span class="line">else if (p instanceof TreeNode)</span><br><span class="line">    e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(this, tab, hash, key, value);</span><br><span class="line">else &#123;</span><br><span class="line">    for (int binCount = 0; ; ++binCount) &#123;</span><br><span class="line">        if ((e = p.next) == null) &#123;</span><br><span class="line">            p.next = newNode(hash, key, value, null);</span><br><span class="line">            if (binCount &gt;= TREEIFY_THRESHOLD - 1) // -1 for 1st</span><br><span class="line">                treeifyBin(tab, hash);</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        if (e.hash == hash &amp;&amp;</span><br><span class="line">            ((k = e.key) == key || (key != null &amp;&amp; key.equals(k))))</span><br><span class="line">            break;</span><br><span class="line">        p = e;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>3.判断table[i]对应的值是否为空，如果为空，直接新建节点添加，并判断是否需要扩容，modCount增加，记录变化次数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if ((p = tab[i = (n - 1) &amp; hash]) == null)</span><br><span class="line">            tab[i] = newNode(hash, key, value, null);</span><br><span class="line">++modCount;</span><br><span class="line">        if (++size &gt; threshold)</span><br><span class="line">            resize();</span><br><span class="line">        afterNodeInsertion(evict);</span><br><span class="line">        return null;</span><br></pre></td></tr></table></figure></p>
-<p>4.如果table[i]不为空，判断节点的key是否存在，如果存在直接覆盖value，这里的存在指的是hashCode以及equals<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (p.hash == hash &amp;&amp;</span><br><span class="line">    ((k = p.key) == key || (key != null &amp;&amp; key.equals(k))))</span><br><span class="line">    e = p;</span><br></pre></td></tr></table></figure></p>
-<p>5.如果不存在，判断table[i]是否为红黑树，如果是红黑树，则直接在树中插入键值对<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">else if (p instanceof TreeNode)</span><br><span class="line">    e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(this, tab, hash, key, value);</span><br></pre></td></tr></table></figure></p>
-<p>6.如果不是红黑树，则遍历链表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">else &#123;</span><br><span class="line">    for (int binCount = 0; ; ++binCount) &#123;</span><br><span class="line">        if ((e = p.next) == null) &#123;</span><br><span class="line">            p.next = newNode(hash, key, value, null);</span><br><span class="line">            if (binCount &gt;= TREEIFY_THRESHOLD - 1) // -1 for 1st</span><br><span class="line">                treeifyBin(tab, hash);</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        if (e.hash == hash &amp;&amp;</span><br><span class="line">            ((k = e.key) == key || (key != null &amp;&amp; key.equals(k))))</span><br><span class="line">            break;</span><br><span class="line">        p = e;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>7.如果链表的长度大于等于TREEIFY_THRESHOLD - 1=7，则转换为红黑树，并插入键值对<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (binCount &gt;= TREEIFY_THRESHOLD - 1) // -1 for 1st</span><br><span class="line">                treeifyBin(tab, hash);</span><br></pre></td></tr></table></figure></p>
-<p>8.如果小于，则链表直接插入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p.next = newNode(hash, key, value, null);</span><br></pre></td></tr></table></figure></p>
-<p>9.遍历过程中若发现key已经存在直接覆盖value<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (e.hash == hash &amp;&amp;</span><br><span class="line">        ((k = e.key) == key || (key != null &amp;&amp; key.equals(k))))</span><br><span class="line">        break;</span><br><span class="line">    p = e;</span><br></pre></td></tr></table></figure></p>
-<p>10.最后判断容量是否超过threshold，超过就扩容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">++modCount;</span><br><span class="line">        if (++size &gt; threshold)</span><br><span class="line">            resize();</span><br><span class="line">        afterNodeInsertion(evict);</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>HashMap在扩容时，除了将容量扩为原来的2倍，还会rehash，因为长度扩大以后，Hash的规则也随之改变<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/*会报java.util.ConcurrentModificationException，</span><br><span class="line">其中，map初始化为一个长度为2的数组，loadFactor=0.75，threshold=2*0.75=1.5，也就是说当put第二个key的时候，map就需要进行resize。</span><br><span class="line">在resize的过程中出现了循环引用问题（链表形成环）*/</span><br><span class="line">Map&lt;String, String&gt; map = new HashMap&lt;&gt;(2);</span><br><span class="line">        for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">            int finalI = i;</span><br><span class="line">            new Thread(new Runnable() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void run() &#123;</span><br><span class="line">                    map.put(String.valueOf(finalI),&quot;3&quot;);</span><br><span class="line">                    System.out.println(map);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br></pre></td></tr></table></figure></p>
+        <p><code>`</code><br>public class Main {<br>    public static void main(String[] args) throws IOException {<br>        try {<br>            throw new IOException();<br>        }finally {<br>            System.out.println(“test”);<br>        }<br>    }<br>}<br>//输出<br>test<br>Exception in thread “main” java.io.IOException<br>    at com.company.Main.main(Main.java:13)</p>
+<p>因为IOException不能分配给Main类型的变量，所以finally子句先执行，之后才会执行主线程，从而出现未捕获的异常</p>
 
       
 
@@ -224,18 +205,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/01/08/定时任务实践记录/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          定时任务学习笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/12/03/实体类应该用基本数据类型还是包装类型/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">实体类应该用基本数据类型还是包装类型</div>
+    <a href="/2019/02/13/dubbo-springboot2-x搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">dubbo+springboot2.x搭建</div>
       <i class="icon-circle-right"></i>
     </a>
   
