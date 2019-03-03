@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Angular | 煜</title>
+  <title>redis复习一 | 煜</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="煜">
-<meta property="og:url" content="http://yoursite.com/tags/Angular/index.html">
+  <meta name="description" content="redis五种基本数据结构： 1.字符串 2.hash 3.list 4.set 5.zset  redis采用的i/o多路复用函数：epoll/kqueue/evport/select，根据编译平台不同，选择时间复杂度最优的函数  采用react设计模式监听i/o事件  mset、mget批量设置、获取值  redis的list可以充当栈和队列，redis的list是有序的,lpush+lpop">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis复习一">
+<meta property="og:url" content="http://yoursite.com/2019/03/03/redis复习一/index.html">
 <meta property="og:site_name" content="煜">
+<meta property="og:description" content="redis五种基本数据结构： 1.字符串 2.hash 3.list 4.set 5.zset  redis采用的i/o多路复用函数：epoll/kqueue/evport/select，根据编译平台不同，选择时间复杂度最优的函数  采用react设计模式监听i/o事件  mset、mget批量设置、获取值  redis的list可以充当栈和队列，redis的list是有序的,lpush+lpop">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-03T10:35:36.836Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="煜">
+<meta name="twitter:title" content="redis复习一">
+<meta name="twitter:description" content="redis五种基本数据结构： 1.字符串 2.hash 3.list 4.set 5.zset  redis采用的i/o多路复用函数：epoll/kqueue/evport/select，根据编译平台不同，选择时间复杂度最优的函数  采用react设计模式监听i/o事件  mset、mget批量设置、获取值  redis的list可以充当栈和队列，redis的list是有序的,lpush+lpop">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -146,60 +151,112 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-redis复习一" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/08/angular学习/" class="archive-article-date">
-  	<time datetime="2018-07-08T09:40:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/08/angular学习/">angular学习</a>
+    <h1 class="article-title" itemprop="name">
+      redis复习一
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/03/03/redis复习一/" class="archive-article-date">
+  	<time datetime="2019-03-03T09:34:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>redis五种基本数据结构：</p>
+<p>1.字符串</p>
+<p>2.hash</p>
+<p>3.list</p>
+<p>4.set</p>
+<p>5.zset</p>
+<hr>
+<p>redis采用的i/o多路复用函数：epoll/kqueue/evport/select，根据编译平台不同，选择时间复杂度最优的函数</p>
+<hr>
+<p>采用react设计模式监听i/o事件</p>
+<hr>
+<p>mset、mget批量设置、获取值</p>
+<hr>
+<p>redis的list可以充当栈和队列，redis的list是有序的,lpush+lpop=栈，lpush+rpop=队列，lpush+brpop可实现阻塞队列，lpush+ltrim=有限集合</p>
+<hr>
+<p>防止keys命令阻塞，使用scan来渐进式遍历</p>
+<hr>
+<p>redis默认配置为16个数据库，但是redis的分布式实现，只允许使用0号数据库</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/03/03/异常丢失/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">异常丢失</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -223,9 +280,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
