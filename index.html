@@ -148,6 +148,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-对Quartz和ThreadPoolExcetuor和while-true-出现的问题思考" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/对Quartz和ThreadPoolExcetuor和while-true-出现的问题思考/">对Quartz和ThreadPoolExcetuor和while(true)出现的问题思考</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/11/对Quartz和ThreadPoolExcetuor和while-true-出现的问题思考/" class="archive-article-date">
+  	<time datetime="2019-03-11T09:12:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>quartz代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class TestQuartz &#123;</span><br><span class="line"></span><br><span class="line">    private static SchedulerFactory schedulerFactory = new StdSchedulerFactory();</span><br><span class="line">    private static Scheduler scheduler;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            scheduler = schedulerFactory.getScheduler();</span><br><span class="line">            scheduler.start();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //每隔10秒执行一次任务</span><br><span class="line">    public static void main(String[] args) throws SchedulerException &#123;</span><br><span class="line">        JobDetail jobDetail = JobBuilder.newJob(QuaTask.class).build();</span><br><span class="line">        CronTrigger trigger = TriggerBuilder.newTrigger()</span><br><span class="line">            .startAt(DateBuilder.evenSecondDate(new Date()))</span><br><span class="line">            .withSchedule(CronScheduleBuilder.cronSchedule(&quot;0/10 * * * * ?&quot;)</span><br><span class="line">            .withMisfireHandlingInstructionDoNothing())</span><br><span class="line">            .build();</span><br><span class="line">        scheduler.scheduleJob(jobDetail, trigger);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>ThreadPoolExcetuor代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class QuaTask extends QuartzJobBean &#123;</span><br><span class="line"></span><br><span class="line">    //核心池大小2，最大池的大小2，队列大小4，默认拒绝策略</span><br><span class="line">    private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2,2,60,TimeUnit.SECONDS,new LinkedBlockingDeque&lt;&gt;(4));</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void executeInternal(JobExecutionContext jobExecutionContext) &#123;</span><br><span class="line">        threadPoolExecutor.execute(() -&gt; System.out.println(&quot;test&quot;));</span><br><span class="line">        //一个线程做while(true)</span><br><span class="line">        threadPoolExecutor.execute(() -&gt; &#123;</span><br><span class="line">            while (true) &#123;&#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行的结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers</span><br><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.core.QuartzSchedulerThread - batch acquisition of 1 triggers</span><br><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.simpl.PropertySettingJobFactory - Producing instance of Job &apos;DEFAULT.6da64b5bd2ee-4f9826e7-d4a3-4a4f-95da-8bce5cec73b2&apos;, class=com.apitest.util.QuaTask</span><br><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.core.QuartzSchedulerThread - batch acquisition of 1 triggers</span><br><span class="line">[DefaultQuartzScheduler_Worker-1] DEBUG org.quartz.core.JobRunShell - Calling execute on job DEFAULT.6da64b5bd2ee-4f9826e7-d4a3-4a4f-95da-8bce5cec73b2</span><br><span class="line">test</span><br><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.simpl.PropertySettingJobFactory - Producing instance of Job &apos;DEFAULT.6da64b5bd2ee-4f9826e7-d4a3-4a4f-95da-8bce5cec73b2&apos;, class=com.apitest.util.QuaTask</span><br><span class="line">[DefaultQuartzScheduler_Worker-2] DEBUG org.quartz.core.JobRunShell - Calling execute on job DEFAULT.6da64b5bd2ee-4f9826e7-d4a3-4a4f-95da-8bce5cec73b2</span><br><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.core.QuartzSchedulerThread - batch acquisition of 1 triggers</span><br><span class="line">test</span><br><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.simpl.PropertySettingJobFactory - Producing instance of Job &apos;DEFAULT.6da64b5bd2ee-4f9826e7-d4a3-4a4f-95da-8bce5cec73b2&apos;, class=com.apitest.util.QuaTask</span><br><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.core.QuartzSchedulerThread - batch acquisition of 1 triggers</span><br><span class="line">[DefaultQuartzScheduler_Worker-3] DEBUG org.quartz.core.JobRunShell - Calling execute on job DEFAULT.6da64b5bd2ee-4f9826e7-d4a3-4a4f-95da-8bce5cec73b2</span><br><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.simpl.PropertySettingJobFactory - Producing instance of Job &apos;DEFAULT.6da64b5bd2ee-4f9826e7-d4a3-4a4f-95da-8bce5cec73b2&apos;, class=com.apitest.util.QuaTask</span><br><span class="line">[DefaultQuartzScheduler_Worker-4] DEBUG org.quartz.core.JobRunShell - Calling execute on job DEFAULT.6da64b5bd2ee-4f9826e7-d4a3-4a4f-95da-8bce5cec73b2</span><br><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.core.QuartzSchedulerThread - batch acquisition of 1 triggers</span><br><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.simpl.PropertySettingJobFactory - Producing instance of Job &apos;DEFAULT.6da64b5bd2ee-4f9826e7-d4a3-4a4f-95da-8bce5cec73b2&apos;, class=com.apitest.util.QuaTask</span><br><span class="line">[DefaultQuartzScheduler_Worker-5] DEBUG org.quartz.core.JobRunShell - Calling execute on job DEFAULT.6da64b5bd2ee-4f9826e7-d4a3-4a4f-95da-8bce5cec73b2</span><br><span class="line">[DefaultQuartzScheduler_QuartzSchedulerThread] DEBUG org.quartz.core.QuartzSchedulerThread - batch acquisition of 1 triggers</span><br><span class="line">[DefaultQuartzScheduler_Worker-5] ERROR org.quartz.core.JobRunShell - Job DEFAULT.6da64b5bd2ee-4f9826e7-d4a3-4a4f-95da-8bce5cec73b2 threw an unhandled Exception: </span><br><span class="line">java.util.concurrent.RejectedExecutionException: Task com.apitest.util.QuaTask$$Lambda$39/0x00000008000eb440@52d4f747 rejected from java.util.concurrent.ThreadPoolExecutor@56eb79c5[Running, pool size = 2, active threads = 2, queued tasks = 4, completed tasks = 2]</span><br><span class="line">	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2055)</span><br><span class="line">	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:825)</span><br><span class="line">	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1355)</span><br><span class="line">	at com.apitest.util.QuaTask.executeInternal(QuaTask.java:17)</span><br><span class="line">	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:75)</span><br><span class="line">	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)</span><br><span class="line">	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)</span><br></pre></td></tr></table></figure></p>
+<p>只输出了2次test，然后执行了4次quartz就报错了，是因为核心池子就2个大小，第一次的时候，一个线程输出test，while(true)占用一个线程。第二次的时候，上一个线程释放，然后继续输出test，while(true)再占用一个线程，到此2个线程就被占满了，然后队列的大小为4，所以还会再执行2次任务，但是没有任何输出。最后因为默认拒绝策略，报错</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java基础补漏" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -865,86 +938,6 @@
 
 
   
-    <article id="post-Jenkins相关操作" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/13/Jenkins相关操作/">Jenkins相关操作</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/13/Jenkins相关操作/" class="archive-article-date">
-  	<time datetime="2018-09-13T06:42:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="jenkins邮件通知配置"><a href="#jenkins邮件通知配置" class="headerlink" title="jenkins邮件通知配置"></a>jenkins邮件通知配置</h4><p>1.进入Jenkins主界面后，点击系统管理<br><img src="/img/jenkins mail1.png" alt="image"></p>
-<p>2.进入到系统设置<br><img src="/img/jenkins mail2.png" alt="image"></p>
-<p>3.在系统管理员邮件地址处填写邮箱，此处的内容需要与下方SMTP认证一致<br><img src="/img/jenkins mail3.png" alt="image"></p>
-<p>4.在下方Extended E-mail Notification处配置邮件通知扩展内容<br><img src="/img/jenkins mail4.png" alt="image"></p>
-<p>5.SMTP server为SMTP邮件服务器，需要在定义的发件人的邮箱里开通smtp </p>
-<p>   Default user E-mail suffix为后缀，此处是非必填 </p>
-<p>   然后勾选Use SMTP Authentication，填写发件人的邮箱的帐号密码 </p>
-<p>   Charset和Default Content Type为内容的编码，以及内容展示的类型</p>
-<p>   然后Default Recipients为构建后邮件需要发送到哪些人的邮箱里，多个邮箱以英文模式下的逗号隔开<br><img src="/img/jenkins mail5.png" alt="image"><br>
-        
-          <a class="article-more-a" href="/2018/09/13/Jenkins相关操作/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Jenkins</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1035,11 +1028,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1051,19 +1044,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Angular</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">bbr</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">bbr</a>
               </li>
              
               <li class="article-tag-list-item">
